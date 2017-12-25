@@ -13,11 +13,16 @@ namespace App.Web
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces : new[] { "App.Web.Controllers" }
             );
         }
         protected void Application_Start()
         {
+            ViewEngines.Engines.Clear();
+            var moduleViewEngine = new ModuleViewEngine();
+            ViewEngines.Engines.Add(moduleViewEngine);
+
             AreaRegistration.RegisterAllAreas();
             RegisterRoutes(RouteTable.Routes);
         }

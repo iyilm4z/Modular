@@ -11,7 +11,7 @@ namespace App.Module.Module1.Controllers
             {
                 Message = "Ping from Module1/Index"
             };
-            return View("~/Modules/App.Module.Module1/Views/Index.cshtml", model);
+            return View(model);
         }
     }
 }
