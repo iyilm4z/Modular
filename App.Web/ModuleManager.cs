@@ -27,16 +27,16 @@ namespace App.Web
 
         public static void Initialize()
         {
-            var moduleFolder = new DirectoryInfo(HostingEnvironment.MapPath(ModulesPath));
+            var modulesFolder = new DirectoryInfo(HostingEnvironment.MapPath(ModulesPath));
             var shadowCopyFolder = new DirectoryInfo(HostingEnvironment.MapPath(ShadowCopyPath));
 
-            Directory.CreateDirectory(moduleFolder.FullName);
+            Directory.CreateDirectory(modulesFolder.FullName);
             Directory.CreateDirectory(shadowCopyFolder.FullName);
 
             foreach (var dllFile in shadowCopyFolder.GetFiles("*.dll", SearchOption.AllDirectories))
                 dllFile.Delete();
 
-            foreach (var moduleDll in moduleFolder.GetFiles("*.dll", SearchOption.AllDirectories))
+            foreach (var moduleDll in modulesFolder.GetFiles("*.dll", SearchOption.AllDirectories))
             {
                 var shadowCopiedModuleFile = new FileInfo(Path.Combine(shadowCopyFolder.FullName, moduleDll.Name));
                 File.Copy(moduleDll.FullName, shadowCopiedModuleFile.FullName, true);

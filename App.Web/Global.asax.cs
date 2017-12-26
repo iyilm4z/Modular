@@ -6,7 +6,7 @@ namespace App.Web
 {
     public class MvcApplication : HttpApplication
     {
-        public static void RegisterRoutes(RouteCollection routes)
+        private static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
@@ -20,8 +20,7 @@ namespace App.Web
         protected void Application_Start()
         {
             ViewEngines.Engines.Clear();
-            var moduleViewEngine = new ModuleViewEngine();
-            ViewEngines.Engines.Add(moduleViewEngine);
+            ViewEngines.Engines.Add(new ModuleViewEngine());
 
             AreaRegistration.RegisterAllAreas();
             RegisterRoutes(RouteTable.Routes);
